@@ -1,0 +1,117 @@
+2022-05-23 12:26:38.095 -03:00 [INF] User profile is available. Using 'C:\Users\agladchtein\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-05-23 12:26:38.930 -03:00 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-23 12:26:39.159 -03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2022-05-23 12:26:39.239 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2022-05-23 12:26:39.240 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2022-05-23 12:26:39.240 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2022-05-23 12:26:39.265 -03:00 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-23 12:26:39.385 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-05-23 12:26:39.411 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-05-23 12:26:39.414 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2022-05-23 12:26:39.563 -03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1);
+SELECT "Id"
+FROM "Projects"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-23 12:26:39.583 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (Size = 31), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int32), @p5='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-23 12:26:39.584 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 81), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-23 12:26:39.584 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 59), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-23 12:26:39.716 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-23 12:26:39.716 -03:00 [INF] Hosting environment: Development
+2022-05-23 12:26:39.716 -03:00 [INF] Content root path: C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\
+2022-05-23 12:26:39.739 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-05-23 12:26:39.785 -03:00 [WRN] Failed to determine the https port for redirect.
+2022-05-23 12:26:39.813 -03:00 [INF] Executing endpoint 'Clean.Architecture.Web.Controllers.HomeController.Index (Clean.Architecture.Web)'
+2022-05-23 12:26:39.822 -03:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Clean.Architecture.Web.Controllers.HomeController (Clean.Architecture.Web).
+2022-05-23 12:26:39.833 -03:00 [INF] Executing ViewResult, running view Index.
+2022-05-23 12:26:40.013 -03:00 [INF] Executed ViewResult - view Index executed in 182.2044ms.
+2022-05-23 12:26:40.016 -03:00 [INF] Executed action Clean.Architecture.Web.Controllers.HomeController.Index (Clean.Architecture.Web) in 192.5827ms
+2022-05-23 12:26:40.016 -03:00 [INF] Executed endpoint 'Clean.Architecture.Web.Controllers.HomeController.Index (Clean.Architecture.Web)'
+2022-05-23 12:26:40.093 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 355.5426ms
+2022-05-23 12:26:40.100 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-05-23 12:26:40.107 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css?v=Us0X8asdxhjhWSKZBLP5EzJtIdsjAfS-pCSp0CISEOA - -
+2022-05-23 12:26:40.107 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-05-23 12:26:40.123 -03:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\wwwroot\css\site.css'
+2022-05-23 12:26:40.125 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 17.9754ms
+2022-05-23 12:26:40.125 -03:00 [INF] Sending file. Request path: '/Clean.Architecture.Web.styles.css'. Physical path: 'C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\obj\Debug\net6.0\scopedcss\bundle\Clean.Architecture.Web.styles.css'
+2022-05-23 12:26:40.125 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Clean.Architecture.Web.styles.css?v=Us0X8asdxhjhWSKZBLP5EzJtIdsjAfS-pCSp0CISEOA - - - 200 1139 text/css 19.1264ms
+2022-05-23 12:26:40.129 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-05-23 12:26:40.131 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-05-23 12:26:40.135 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2022-05-23 12:26:40.138 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 41.4674ms
+2022-05-23 12:26:40.144 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-05-23 12:26:40.146 -03:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\wwwroot\js\site.js'
+2022-05-23 12:26:40.147 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 2.0689ms
+2022-05-23 12:26:40.151 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-23 12:26:40.153 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2022-05-23 12:26:40.154 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12014 application/javascript;+charset=utf-8 2.3562ms
+2022-05-23 12:26:40.158 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 application/javascript 27.2338ms
+2022-05-23 12:26:40.158 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-05-23 12:26:40.173 -03:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\wwwroot\lib\jquery\dist\jquery.min.js'
+2022-05-23 12:26:40.175 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 200 89478 application/javascript 47.0006ms
+2022-05-23 12:26:40.212 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 54.2211ms
+2022-05-23 12:26:40.293 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2022-05-23 12:26:40.301 -03:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\agladchtein\source\repos\CleanArchitecture\src\Clean.Architecture.Web\wwwroot\favicon.ico'
+2022-05-23 12:26:40.301 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 200 5430 image/x-icon 7.8473ms
+2022-05-23 12:27:10.969 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger - -
+2022-05-23 12:27:10.975 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2022-05-23 12:27:10.975 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger - - - 301 - - 8.6938ms
+2022-05-23 12:27:11.034 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 59.2167ms
+2022-05-23 12:27:11.037 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-bundle.js - -
+2022-05-23 12:27:11.039 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-23 12:27:11.039 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-standalone-preset.js - -
+2022-05-23 12:27:11.066 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12014 application/javascript;+charset=utf-8 26.7119ms
+2022-05-23 12:27:11.078 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui.css - -
+2022-05-23 12:27:11.078 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-05-23 12:27:11.090 -03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2022-05-23 12:27:11.091 -03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2022-05-23 12:27:11.092 -03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2022-05-23 12:27:11.093 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui.css - - - 200 143943 text/css 15.6411ms
+2022-05-23 12:27:11.099 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-standalone-preset.js - - - 200 339486 application/javascript 60.0773ms
+2022-05-23 12:27:11.111 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 34.2576ms
+2022-05-23 12:27:11.123 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-bundle.js - - - 200 1095087 application/javascript 86.1940ms
+2022-05-23 12:27:11.243 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2022-05-23 12:27:11.256 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/favicon-32x32.png - -
+2022-05-23 12:27:11.257 -03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2022-05-23 12:27:11.257 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/favicon-32x32.png - - - 200 628 image/png 1.2329ms
+2022-05-23 12:27:11.330 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 86.2119ms
+2022-05-23 12:27:31.235 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-23 12:27:31.236 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12014 application/javascript;+charset=utf-8 1.2932ms
